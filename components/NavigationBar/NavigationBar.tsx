@@ -1,21 +1,12 @@
 import { useEffect, useState } from "react";
-import { ThemeMode, Themes, THEME_ATTR, THEME_STR_KEY } from "@/entities/theme";
+import { Themes, THEME_ATTR, THEME_STR_KEY } from "@/entities/theme";
+import useStorageState from "@/hooks/useStorageState";
 
 const NavigationBar = () => {
-  const [theme, setTheme] = useState<ThemeMode>(Themes.EMPTY);
+  const [theme, setTheme] = useStorageState(THEME_STR_KEY, Themes.EMPTY);
 
   useEffect(() => {
-    const storageValue = localStorage.getItem(THEME_STR_KEY);
-    setTheme((storageValue as ThemeMode) || theme);
-  }, []);
-
-  useEffect(() => {
-    if (!theme) {
-      document.documentElement.setAttribute(THEME_ATTR, Themes.LIGHT);
-      return;
-    }
     document.documentElement.setAttribute(THEME_ATTR, theme);
-    localStorage.setItem(THEME_STR_KEY, theme);
   }, [theme]);
 
   return (
