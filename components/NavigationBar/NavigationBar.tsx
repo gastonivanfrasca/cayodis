@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Themes, THEME_ATTR, THEME_STR_KEY } from "@/entities/theme";
+import { Theme, Themes, THEME_ATTR, THEME_STR_KEY } from "@/entities/theme";
 import useStorageState from "@/hooks/useStorageState";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 const NavigationBar = () => {
   const [theme, setTheme] = useStorageState(THEME_STR_KEY, Themes.EMPTY);
@@ -34,20 +35,7 @@ const NavigationBar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <label className="label cursor-pointer">
-                <span className="label-text">🌕</span>
-                <input
-                  onChange={() =>
-                    setTheme(
-                      theme === Themes.LIGHT ? Themes.DARK : Themes.LIGHT
-                    )
-                  }
-                  type="checkbox"
-                  className="toggle"
-                  checked={theme === Themes.DARK}
-                />
-                <span className="label-text">🌑</span>
-              </label>
+              <ThemeSwitcher theme={theme as Theme} setTheme={setTheme} />
             </li>
           </ul>
         </div>

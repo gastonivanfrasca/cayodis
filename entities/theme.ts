@@ -10,7 +10,7 @@ export enum Themes {
 /**
  * The type of theme that can be used
  */
-export type ThemeMode = Themes.LIGHT | Themes.DARK | Themes.EMPTY;
+export type Theme = Themes.LIGHT | Themes.DARK | Themes.EMPTY;
 
 /**
  * The name of the attribute where the theme is applied
