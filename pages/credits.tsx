@@ -23,6 +23,7 @@ const Credits = () => {
               <td>
                 <a
                   target="_blank"
+                  rel="noreferrer"
                   href="https://www.flaticon.es/iconos-gratis/perfil"
                   title="perfil iconos"
                 >
@@ -36,6 +37,7 @@ const Credits = () => {
               <td>
                 <a
                   target="_blank"
+                  rel="noreferrer"
                   href="https://github.com/gastonivanfrasca"
                   title="gastonivanfrasca"
                 >
