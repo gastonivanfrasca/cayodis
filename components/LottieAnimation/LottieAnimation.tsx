@@ -25,7 +25,7 @@ const LottieAnimation = (props: LottieAnimationProps) => {
       loop={loop}
       mode={mode}
       src={src}
-      style={{ width: { width }, height: { height } }}
+      style={{ width: width, height: height }}
     />
   );
 };
