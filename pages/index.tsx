@@ -1,4 +1,5 @@
 import Head from "next/head";
+import LottieAnimation from "@/components/LottieAnimation/LottieAnimation";
 
 export default function Home() {
   return (
@@ -13,7 +14,31 @@ export default function Home() {
         <link rel="icon" href="/favicon/favicon.ico" />
       </Head>
       <main>
-        <p>Check my knowledge</p>
+        <div className="hero min-h-screen">
+          <div className="hero-content flex-col lg:flex-row">
+            <LottieAnimation
+              id="conversation"
+              autoplay={true}
+              loop={true}
+              mode={"normal"}
+              src={
+                "https://assets1.lottiefiles.com/packages/lf20_xgvucffc.json"
+              }
+              width={"100px"}
+              height={"100px"}
+            />
+            <div>
+              <h1 className="text-5xl font-bold">
+                Check your knowledge with an expert
+              </h1>
+              <p className="py-6">
+                Chat GPT powered conversation with an expert on any subject
+                simulator.
+              </p>
+              <button className="btn btn-primary">Get Started</button>
+            </div>
+          </div>
+        </div>
       </main>
     </>
   );
