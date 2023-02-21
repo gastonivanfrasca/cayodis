@@ -14,7 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon/favicon.ico" />
       </Head>
       <main>
-        <div className="hero min-h-screen">
+        <div className="hero mt-8 sm:mt-6 md:mt-24">
           <div className="hero-content flex-col lg:flex-row">
             <LottieAnimation
               id="conversation"
