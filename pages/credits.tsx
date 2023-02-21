@@ -1,8 +1,15 @@
 import React from "react";
+import Head from "next/head";
 
 const Credits = () => {
   return (
     <>
+      <Head>
+        <title>Credits - ChMyKn</title>
+        <meta name="description" content="Credits for CheckMyKnowledge app" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon/favicon.ico" />
+      </Head>
       <div className="divider">
         <h1 className="text-lg">Credits</h1>
       </div>
@@ -23,6 +30,7 @@ const Credits = () => {
               <td>
                 <a
                   target="_blank"
+                  className="link link-info"
                   rel="noreferrer"
                   href="https://www.flaticon.es/iconos-gratis/perfil"
                   title="perfil iconos"
@@ -33,10 +41,26 @@ const Credits = () => {
             </tr>
 
             <tr>
+              <td>Home conversation Lottie</td>
+              <td>
+                <a
+                  target="_blank"
+                  className="link link-info"
+                  rel="noreferrer"
+                  href="https://lottiefiles.com/58723-conversation-icons"
+                  title="Home conversation Lottie"
+                >
+                  Lottie file url
+                </a>
+              </td>
+            </tr>
+
+            <tr>
               <td>ChMyKn</td>
               <td>
                 <a
                   target="_blank"
+                  className="link link-info"
                   rel="noreferrer"
                   href="https://github.com/gastonivanfrasca"
                   title="gastonivanfrasca"

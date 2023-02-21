@@ -24,11 +24,11 @@ export default function Home() {
               src={
                 "https://assets1.lottiefiles.com/packages/lf20_xgvucffc.json"
               }
-              width={"100px"}
-              height={"100px"}
+              width="250px"
+              height="250px"
             />
             <div>
-              <h1 className="text-5xl font-bold">
+              <h1 className="text-4xl font-bold">
                 Check your knowledge with an expert
               </h1>
               <p className="py-6">
