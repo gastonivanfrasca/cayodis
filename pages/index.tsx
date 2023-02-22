@@ -46,7 +46,7 @@ export default function Home() {
                 simulator.
               </p>
               <button
-                className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+                className="btn btn-md lg:btn-lg"
                 onClick={() =>
                   signInWithGoogle()
                     .then()
