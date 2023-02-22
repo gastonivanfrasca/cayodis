@@ -2,15 +2,10 @@ import Head from "next/head";
 import LottieAnimation from "@/components/LottieAnimation/LottieAnimation";
 import { FcGoogle } from "react-icons/fc";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { signInWithGoogle } from "@/helpers/auth";
 
 export default function Home() {
   const supabaseClient = useSupabaseClient();
-
-  async function signInWithGoogle() {
-    const { data, error } = await supabaseClient.auth.signInWithOAuth({
-      provider: "google",
-    });
-  }
 
   return (
     <>
@@ -48,7 +43,7 @@ export default function Home() {
               <button
                 className="btn btn-md lg:btn-lg"
                 onClick={() =>
-                  signInWithGoogle()
+                  signInWithGoogle(supabaseClient)
                     .then()
                     .catch(() => window.location.assign("/500"))
                 }
