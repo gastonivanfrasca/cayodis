@@ -1,7 +1,17 @@
 import Head from "next/head";
 import LottieAnimation from "@/components/LottieAnimation/LottieAnimation";
+import { FcGoogle } from "react-icons/fc";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 export default function Home() {
+  const supabaseClient = useSupabaseClient();
+
+  async function signInWithGoogle() {
+    const { data, error } = await supabaseClient.auth.signInWithOAuth({
+      provider: "google",
+    });
+  }
+
   return (
     <>
       <Head>
@@ -14,7 +24,7 @@ export default function Home() {
         <link rel="icon" href="/favicon/favicon.ico" />
       </Head>
       <main>
-        <div className="hero min-h-screen">
+        <div className="hero mt-8 sm:mt-6 md:mt-24">
           <div className="hero-content flex-col lg:flex-row">
             <LottieAnimation
               id="conversation"
@@ -35,7 +45,17 @@ export default function Home() {
                 Chat GPT powered conversation with an expert on any subject
                 simulator.
               </p>
-              <button className="btn btn-primary">Get Started</button>
+              <button
+                className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+                onClick={() =>
+                  signInWithGoogle()
+                    .then()
+                    .catch(() => window.location.assign("/500"))
+                }
+              >
+                <FcGoogle />
+                <span className="ml-2">Sign in with Google</span>
+              </button>
             </div>
           </div>
         </div>
