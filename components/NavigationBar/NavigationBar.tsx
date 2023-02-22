@@ -4,9 +4,17 @@ import useStorageState from "@/hooks/useStorageState";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import Avatar from "../Avatar/Avatar";
 import Link from "next/link";
+import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const NavigationBar = () => {
   const [theme, setTheme] = useStorageState(THEME_STR_KEY, Themes.EMPTY);
+
+  const user = useUser();
+  const supabaseClient = useSupabaseClient();
+
+  async function signout() {
+    const { error } = await supabaseClient.auth.signOut();
+  }
 
   useEffect(() => {
     document.documentElement.setAttribute(THEME_ATTR, theme);
@@ -51,9 +59,25 @@ const NavigationBar = () => {
         </Link>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-ghost btn-circle">
-          <Avatar imgSrc="" />
-        </button>
+        <div className="dropdown">
+          <label tabIndex={0} className="btn btn-ghost btn-circle">
+            <Avatar imgSrc={user ? user.user_metadata?.avatar_url : ""} />
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-compact dropdown-content bg-base-100 rounded-box"
+          >
+            {user && (
+              <li>
+                <button
+                  onClick={() => signout().then(() => window.location.reload())}
+                >
+                  🚫
+                </button>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   );
