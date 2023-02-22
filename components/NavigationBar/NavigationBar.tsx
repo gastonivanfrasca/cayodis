@@ -4,17 +4,14 @@ import useStorageState from "@/hooks/useStorageState";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import Avatar from "../Avatar/Avatar";
 import Link from "next/link";
+import { signOut, signInWithGoogle } from "@/helpers/auth";
+import { FcGoogle } from "react-icons/fc";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const NavigationBar = () => {
   const [theme, setTheme] = useStorageState(THEME_STR_KEY, Themes.EMPTY);
-
   const user = useUser();
   const supabaseClient = useSupabaseClient();
-
-  async function signout() {
-    const { error } = await supabaseClient.auth.signOut();
-  }
 
   useEffect(() => {
     document.documentElement.setAttribute(THEME_ATTR, theme);
@@ -67,12 +64,20 @@ const NavigationBar = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content bg-base-100 rounded-box"
           >
-            {user && (
+            {user ? (
               <li>
                 <button
-                  onClick={() => signout().then(() => window.location.reload())}
+                  onClick={() =>
+                    signOut(supabaseClient).then(() => window.location.reload())
+                  }
                 >
                   🚫
+                </button>
+              </li>
+            ) : (
+              <li>
+                <button onClick={() => signInWithGoogle(supabaseClient)}>
+                  <FcGoogle />
                 </button>
               </li>
             )}
