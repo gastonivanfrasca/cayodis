@@ -7,6 +7,12 @@ import Link from "next/link";
 import { signOut, signInWithGoogle } from "@/helpers/auth";
 import { FcGoogle } from "react-icons/fc";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { Genos } from "@next/font/google";
+
+const genos = Genos({
+  subsets: ["latin"],
+  variable: "--font-genos",
+});
 
 const NavigationBar = () => {
   const [theme, setTheme] = useStorageState(THEME_STR_KEY, Themes.EMPTY);
@@ -45,13 +51,19 @@ const NavigationBar = () => {
               <Link href="/credits">Credits</Link>
             </li>
             <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
               <ThemeSwitcher theme={theme as Theme} setTheme={setTheme} />
             </li>
           </ul>
         </div>
       </div>
       <div className="navbar-center">
-        <Link href="/" className="btn btn-ghost normal-case text-xl">
+        <Link
+          href="/"
+          className={`${genos.variable} font-mono btn btn-ghost normal-case text-2xl`}
+        >
           ChMyKn
         </Link>
       </div>
