@@ -24,8 +24,8 @@ const About = () => {
             </h1>
             <p className="py-6">
               Check my knowledge sounded like a good portfolio project. The idea
-              is experiment with prompting on conversational models, it's only intended to be a
-              proof of concept.
+              is experiment with prompting on conversational models, it&apos;s
+              only intended to be a proof of concept.
             </p>
           </div>
         </div>
