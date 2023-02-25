@@ -11,7 +11,7 @@ const About = () => {
   return (
     <>
       <Head>
-        <title>About - ChMyKn</title>
+        <title>About - CaYoDis</title>
         <meta name="description" content="Credits for CheckMyKnowledge app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon/favicon.ico" />
@@ -20,12 +20,12 @@ const About = () => {
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className={`${genos.variable} font-mono text-5xl font-bold`}>
-              ChMyKn
+              CaYoDis
             </h1>
             <p className="py-6">
-              Check my knowledge sounded like a good portfolio project. The idea
-              is experiment with prompting on conversational models, it&apos;s
-              only intended to be a proof of concept.
+              CaYoDis sounded like a good portfolio project. The idea is to
+              create tutorials from what ive been and to use GPT like chats to
+              generate content.
             </p>
           </div>
         </div>
