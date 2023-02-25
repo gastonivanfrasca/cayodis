@@ -17,6 +17,9 @@ const LangSwitcher = () => {
         onChange={() => {
           setLang(lang === Langs.EN ? Langs.ES : Langs.EN);
           i18n.changeLanguage(lang === Langs.EN ? Langs.ES : Langs.EN);
+          document.cookie = `NEXT_LOCALE=${
+            lang === Langs.EN ? Langs.ES : Langs.EN
+          }`;
         }}
         type="checkbox"
         className="toggle"
