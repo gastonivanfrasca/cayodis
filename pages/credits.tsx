@@ -5,7 +5,7 @@ const Credits = () => {
   return (
     <>
       <Head>
-        <title>Credits - ChMyKn</title>
+        <title>Credits - CaYoDis</title>
         <meta name="description" content="Credits for CheckMyKnowledge app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon/favicon.ico" />
@@ -56,7 +56,7 @@ const Credits = () => {
             </tr>
 
             <tr>
-              <td>ChMyKn</td>
+              <td>CaYoDis</td>
               <td>
                 <a
                   target="_blank"

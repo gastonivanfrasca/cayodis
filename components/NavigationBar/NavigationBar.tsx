@@ -64,7 +64,7 @@ const NavigationBar = () => {
           href="/"
           className={`${genos.variable} font-mono btn btn-ghost normal-case text-2xl`}
         >
-          ChMyKn
+          CaYoDis
         </Link>
       </div>
       <div className="navbar-end">
