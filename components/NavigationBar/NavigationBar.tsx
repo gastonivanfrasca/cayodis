@@ -20,7 +20,7 @@ const NavigationBar = () => {
   const [theme, setTheme] = useStorageState(THEME_STR_KEY, Themes.EMPTY);
   const user = useUser();
   const supabaseClient = useSupabaseClient();
-  const { t } = useTranslation("common");
+  const { t, i18n } = useTranslation("common");
 
   useEffect(() => {
     document.documentElement.setAttribute(THEME_ATTR, theme);
@@ -51,10 +51,10 @@ const NavigationBar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52"
           >
             <li>
-              <Link href="/credits">{t("credits")}</Link>
+              <Link href={`/${i18n.language}/credits`}>{t("credits")}</Link>
             </li>
             <li>
-              <Link href="/about">{t("about")}</Link>
+              <Link href={`/${i18n.language}/about`}>{t("about")}</Link>
             </li>
             <li>
               <ThemeSwitcher theme={theme as Theme} setTheme={setTheme} />
@@ -67,7 +67,7 @@ const NavigationBar = () => {
       </div>
       <div className="navbar-center">
         <Link
-          href="/"
+          href={`/${i18n.language}/`}
           className={`${genos.variable} font-mono btn btn-ghost normal-case text-2xl`}
         >
           CaYoDis

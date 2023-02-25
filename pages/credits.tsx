@@ -1,17 +1,22 @@
 import React from "react";
 import Head from "next/head";
+import type { GetServerSideProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 const Credits = () => {
+  const { t } = useTranslation(["common", "credits"]);
+
   return (
     <>
       <Head>
-        <title>Credits - CaYoDis</title>
+        <title>{`${t("credits")} - CaYoDis`}</title>
         <meta name="description" content="Credits for CheckMyKnowledge app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon/favicon.ico" />
       </Head>
       <div className="divider">
-        <h1 className="text-lg">Credits</h1>
+        <h1 className="text-lg">{t("credits")}</h1>
       </div>
 
       <div className="overflow-x-auto">
@@ -19,8 +24,8 @@ const Credits = () => {
           {/* table header */}
           <thead>
             <tr>
-              <th>Asset</th>
-              <th>Credit</th>
+              <th>{t("component")}</th>
+              <th>{t("credit")}</th>
             </tr>
           </thead>
           <tbody>
@@ -77,3 +82,14 @@ const Credits = () => {
 };
 
 export default Credits;
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale!, ["common", "credits"], null, [
+        "en",
+        "es",
+      ])),
+    },
+  };
+};
