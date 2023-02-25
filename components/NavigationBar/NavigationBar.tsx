@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { Theme, Themes, THEME_ATTR, THEME_STR_KEY } from "@/entities/theme";
 import useStorageState from "@/hooks/useStorageState";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import LangSwitcher from "../LangSwitcher/LangSwitcher";
 import Avatar from "../Avatar/Avatar";
 import Link from "next/link";
 import { signOut, signInWithGoogle } from "@/helpers/auth";
 import { FcGoogle } from "react-icons/fc";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Genos } from "@next/font/google";
+import { useTranslation } from "next-i18next";
 
 const genos = Genos({
   subsets: ["latin"],
@@ -18,6 +20,7 @@ const NavigationBar = () => {
   const [theme, setTheme] = useStorageState(THEME_STR_KEY, Themes.EMPTY);
   const user = useUser();
   const supabaseClient = useSupabaseClient();
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     document.documentElement.setAttribute(THEME_ATTR, theme);
@@ -48,13 +51,16 @@ const NavigationBar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52"
           >
             <li>
-              <Link href="/credits">Credits</Link>
+              <Link href="/credits">{t("credits")}</Link>
             </li>
             <li>
-              <Link href="/about">About</Link>
+              <Link href="/about">{t("about")}</Link>
             </li>
             <li>
               <ThemeSwitcher theme={theme as Theme} setTheme={setTheme} />
+            </li>
+            <li>
+              <LangSwitcher />
             </li>
           </ul>
         </div>
