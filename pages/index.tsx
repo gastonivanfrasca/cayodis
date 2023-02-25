@@ -3,18 +3,18 @@ import LottieAnimation from "@/components/LottieAnimation/LottieAnimation";
 import { FcGoogle } from "react-icons/fc";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { signInWithGoogle } from "@/helpers/auth";
+import type { GetServerSideProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 export default function Home() {
   const supabaseClient = useSupabaseClient();
-
+  const { t } = useTranslation("index");
   return (
     <>
       <Head>
-        <title>Check My Knowledge</title>
-        <meta
-          name="description"
-          content="Initial version of check my knowledge app"
-        />
+        <title>CaYoDis</title>
+        <meta name="description" content="Initial version of CaYoDis app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon/favicon.ico" />
       </Head>
@@ -33,13 +33,8 @@ export default function Home() {
               height="250px"
             />
             <div>
-              <h1 className="text-4xl font-bold">
-                Check your knowledge with an expert
-              </h1>
-              <p className="py-6">
-                Chat GPT powered conversation with an expert on any subject
-                simulator.
-              </p>
+              <h1 className="text-4xl font-bold">{t("slogan")}</h1>
+              <p className="py-6">{t("description")}</p>
               <button
                 className="btn btn-md lg:btn-lg"
                 onClick={() =>
@@ -49,7 +44,7 @@ export default function Home() {
                 }
               >
                 <FcGoogle />
-                <span className="ml-2">Sign in with Google</span>
+                <span className="ml-2">{t("sign_in_with_google")}</span>
               </button>
             </div>
           </div>
@@ -58,3 +53,14 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale!, ["common", "index"], null, [
+        "en",
+        "es",
+      ])),
+    },
+  };
+};
