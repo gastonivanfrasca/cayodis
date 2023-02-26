@@ -26,7 +26,7 @@ const About = () => {
             <h1 className={`${genos.variable} font-mono text-5xl font-bold`}>
               CaYoDis
             </h1>
-            <p className="py-6">{t("description")}</p>
+            <p className="py-6">{t("description", { ns: "about" })}</p>
           </div>
         </div>
       </div>

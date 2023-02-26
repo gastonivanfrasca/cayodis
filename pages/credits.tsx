@@ -24,8 +24,8 @@ const Credits = () => {
           {/* table header */}
           <thead>
             <tr>
-              <th>{t("component")}</th>
-              <th>{t("credit")}</th>
+              <th>{t("component", { ns: "credits" })}</th>
+              <th>{t("credit", { ns: "credits" })}</th>
             </tr>
           </thead>
           <tbody>
