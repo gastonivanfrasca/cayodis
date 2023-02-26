@@ -1,5 +1,5 @@
 import Head from "next/head";
-import LottieAnimation from "@/components/LottieAnimation/LottieAnimation";
+import { LottieAnimation } from "@/components";
 import { FcGoogle } from "react-icons/fc";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { signInWithGoogle } from "@/helpers/auth";

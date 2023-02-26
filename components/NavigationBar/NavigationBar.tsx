@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { Theme, Themes, THEME_ATTR, THEME_STR_KEY } from "@/entities/theme";
+import { ThemeSwitcher, LangSwitcher, Avatar } from "@/components";
 import useStorageState from "@/hooks/useStorageState";
-import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
-import LangSwitcher from "../LangSwitcher/LangSwitcher";
-import Avatar from "../Avatar/Avatar";
 import Link from "next/link";
 import { signOut, signInWithGoogle } from "@/helpers/auth";
 import { FcGoogle } from "react-icons/fc";
