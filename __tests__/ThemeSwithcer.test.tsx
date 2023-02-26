@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { expect, jest } from "@jest/globals";
-import ThemeSwitcher from "../components/ThemeSwitcher/ThemeSwitcher";
+import ThemeSwitcher from "../components/ThemeSwitcher";
 import { Themes } from "../entities/theme";
 
 describe("ThemeSwitcher", () => {
