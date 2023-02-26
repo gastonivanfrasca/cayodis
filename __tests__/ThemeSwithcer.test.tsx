@@ -1,27 +1,23 @@
 import React from "react";
-import { render, screen, act } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { expect, jest } from "@jest/globals";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { expect } from "@jest/globals";
 import ThemeSwitcher from "../components/ThemeSwitcher";
-import { Themes } from "../entities/theme";
 
 describe("ThemeSwitcher", () => {
-  const setTheme = jest.fn();
-  const theme = Themes.LIGHT;
-
   beforeEach(() => {
-    render(<ThemeSwitcher theme={theme} setTheme={setTheme} />);
+    render(<ThemeSwitcher />);
   });
 
   it("should render ThemeSwitcher", () => {
-    const themeSwitcher = screen.getByTestId("theme-switcher");
+    const themeSwitcher = screen.getByRole("checkbox") as HTMLInputElement;
     expect(themeSwitcher).not.toBeNull();
   });
 
-  it("should call setTheme on click", async () => {
-    await act(async () => {
-      await userEvent.click(screen.getByTestId("theme-switcher"));
-    });
-    expect(setTheme).toBeCalledTimes(1);
+  it("should change theme", () => {
+    const themeSwitcher = screen.getByRole("checkbox") as HTMLInputElement;
+    fireEvent.click(themeSwitcher);
+    expect(themeSwitcher.checked).toBe(true);
+    fireEvent.click(themeSwitcher);
+    expect(themeSwitcher.checked).toBe(false);
   });
 });
