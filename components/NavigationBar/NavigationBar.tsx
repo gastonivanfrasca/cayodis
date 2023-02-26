@@ -1,7 +1,4 @@
-import { useEffect } from "react";
-import { Theme, Themes, THEME_ATTR, THEME_STR_KEY } from "@/entities/theme";
 import { ThemeSwitcher, LangSwitcher, Avatar } from "@/components";
-import useStorageState from "@/hooks/useStorageState";
 import Link from "next/link";
 import { signOut, signInWithGoogle } from "@/helpers/auth";
 import { FcGoogle } from "react-icons/fc";
@@ -15,14 +12,9 @@ const genos = Genos({
 });
 
 const NavigationBar = () => {
-  const [theme, setTheme] = useStorageState(THEME_STR_KEY, Themes.EMPTY);
   const user = useUser();
   const supabaseClient = useSupabaseClient();
   const { t, i18n } = useTranslation("common");
-
-  useEffect(() => {
-    document.documentElement.setAttribute(THEME_ATTR, theme);
-  }, [theme]);
 
   return (
     <div className="navbar bg-base-200 shadow-md">
@@ -55,7 +47,7 @@ const NavigationBar = () => {
               <Link href={`/${i18n.language}/about`}>{t("about")}</Link>
             </li>
             <li>
-              <ThemeSwitcher theme={theme as Theme} setTheme={setTheme} />
+              <ThemeSwitcher />
             </li>
             <li>
               <LangSwitcher />

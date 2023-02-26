@@ -12,6 +12,13 @@ const LangSwitcher = () => {
   const { i18n } = useTranslation("common");
   const [lang, setLang] = useStorageState("language", Langs.Empty);
   useEffect(() => {
+    if (lang === Langs.Empty) {
+      const cookieLang = document.cookie.split("=")[1];
+      if (cookieLang) {
+        setLang(cookieLang);
+      }
+    }
+
     if (lang !== i18n.language || lang !== Langs.Empty) {
       i18n.changeLanguage(lang);
       document.cookie = `NEXT_LOCALE=${lang}`;

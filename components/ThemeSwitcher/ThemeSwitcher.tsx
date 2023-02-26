@@ -1,12 +1,24 @@
 import React from "react";
-import { Themes, Theme } from "@/entities/theme";
+import { Themes, THEME_STR_KEY, THEME_ATTR } from "./entities";
+import useStorageState from "@/hooks/useStorageState";
+import { useEffect } from "react";
 
-type ThemeSwitcherProps = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-};
+const ThemeSwitcher = () => {
+  const [theme, setTheme] = useStorageState(THEME_STR_KEY, Themes.EMPTY);
 
-const ThemeSwitcher = ({ theme, setTheme }: ThemeSwitcherProps) => {
+  useEffect(() => {
+    if (theme === Themes.EMPTY) {
+      setTheme(
+        window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? Themes.DARK
+          : Themes.LIGHT
+      );
+    }
+
+    document.documentElement.setAttribute(THEME_ATTR, theme);
+  }, [theme]);
+
   return (
     <label className="label cursor-pointer">
       <span className="label-text">🌕</span>
