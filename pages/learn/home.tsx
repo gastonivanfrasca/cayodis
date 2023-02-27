@@ -16,8 +16,8 @@ const Home = () => {
         <link rel="icon" href="/favicon/favicon.ico" />
       </Head>
       <main>
-        <div className="divider py-4">Explore tutorials</div>
-        <div className="carousel  carousel-center max-w-md  p-4 space-x-4 bg-neutral rounded-box  md:max-w-full ">
+        <div className="divider py-4 text-lg">Explore tutorials</div>
+        <div className="carousel  carousel-center max-w-md py-16 p-4 space-x-8 bg-base-200 rounded-box  md:max-w-full ">
           <div className="carousel-item relative w-full md:w-max cursor-pointer">
             <TutorialCard
               title="Declaring a component"
@@ -25,6 +25,7 @@ const Home = () => {
               difficulty="begginer"
               points={10}
               icon="react"
+              code="<Component />"
             />
           </div>
           <div className="carousel-item relative w-full md:w-max cursor-pointer">
@@ -34,6 +35,7 @@ const Home = () => {
               difficulty="begginer"
               points={10}
               icon="react"
+              code="<Component />"
             />
           </div>
           <div className="carousel-item relative w-full md:w-max cursor-pointer">
@@ -43,6 +45,7 @@ const Home = () => {
               difficulty="begginer"
               points={10}
               icon="react"
+              code="<Component />"
             />
           </div>
           <div className="carousel-item relative w-full md:w-max cursor-pointer">
@@ -52,6 +55,7 @@ const Home = () => {
               difficulty="begginer"
               points={10}
               icon="react"
+              code="<Component />"
             />
           </div>
           <div className="carousel-item relative w-full md:w-max cursor-pointer">
@@ -61,6 +65,7 @@ const Home = () => {
               difficulty="begginer"
               points={10}
               icon="react"
+              code="<Component />"
             />
           </div>
         </div>

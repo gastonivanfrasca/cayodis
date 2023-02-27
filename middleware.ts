@@ -14,6 +14,9 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getSession();
 
   if (session?.user.email?.endsWith("@gmail.com")) {
+    if (req.nextUrl.pathname.startsWith("/")) {
+      return NextResponse.rewrite(new URL("/learn/home", req.url));
+    }
     return res;
   }
   const redirectUrl = req.nextUrl.clone();
