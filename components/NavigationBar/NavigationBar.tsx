@@ -42,14 +42,30 @@ const NavigationBar = () => {
           >
             {user && (
               <li>
-                <Link href={`/${i18n.language}/learn/home`}>{t("learn")}</Link>
+                <Link
+                  href={
+                    i18n.language
+                      ? `/${i18n?.language}/learn/home`
+                      : `/learn/home`
+                  }
+                >
+                  {t("learn")}
+                </Link>
               </li>
             )}
             <li>
-              <Link href={`/${i18n.language}/credits`}>{t("credits")}</Link>
+              <Link
+                href={i18n?.language ? `/${i18n.language}/credits` : `/credits`}
+              >
+                {t("credits")}
+              </Link>
             </li>
             <li>
-              <Link href={`/${i18n.language}/about`}>{t("about")}</Link>
+              <Link
+                href={i18n?.language ? `/${i18n.language}/about` : `/about`}
+              >
+                {t("about")}
+              </Link>
             </li>
             <li>
               <ThemeSwitcher />
