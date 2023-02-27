@@ -5,6 +5,8 @@ import { FcGoogle } from "react-icons/fc";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Genos } from "@next/font/google";
 import { useTranslation } from "next-i18next";
+import useStorageState from "@/hooks/useStorageState";
+import { Langs } from "../LangSwitcher/LangSwitcher";
 
 const genos = Genos({
   subsets: ["latin"],
@@ -13,8 +15,9 @@ const genos = Genos({
 
 const NavigationBar = () => {
   const user = useUser();
+  const [lang, setLang] = useStorageState("language", Langs.Empty);
   const supabaseClient = useSupabaseClient();
-  const { t, i18n } = useTranslation("common");
+  const { t } = useTranslation("common");
 
   return (
     <div className="navbar bg-base-200 shadow-md">
@@ -42,28 +45,18 @@ const NavigationBar = () => {
           >
             {user && (
               <li>
-                <Link
-                  href={
-                    i18n.language
-                      ? `/${i18n?.language}/learn/home`
-                      : `/learn/home`
-                  }
-                >
+                <Link href={"/learn/home"} locale={lang}>
                   {t("learn")}
                 </Link>
               </li>
             )}
             <li>
-              <Link
-                href={i18n?.language ? `/${i18n.language}/credits` : `/credits`}
-              >
+              <Link href={"/credits"} locale={lang}>
                 {t("credits")}
               </Link>
             </li>
             <li>
-              <Link
-                href={i18n?.language ? `/${i18n.language}/about` : `/about`}
-              >
+              <Link href={"/about"} locale={lang}>
                 {t("about")}
               </Link>
             </li>
@@ -71,15 +64,16 @@ const NavigationBar = () => {
               <ThemeSwitcher />
             </li>
             <li>
-              <LangSwitcher />
+              <LangSwitcher lang={lang} setLang={setLang} />
             </li>
           </ul>
         </div>
       </div>
       <div className="navbar-center">
         <Link
-          href={`/${i18n.language}/`}
+          href={user ? "/learn/home" : "/"}
           className={`${genos.variable} font-mono btn btn-ghost normal-case text-2xl`}
+          locale={lang}
         >
           CaYoDis
         </Link>
