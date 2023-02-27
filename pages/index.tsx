@@ -1,15 +1,25 @@
 import Head from "next/head";
 import { LottieAnimation } from "@/components";
 import { FcGoogle } from "react-icons/fc";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { signInWithGoogle } from "@/helpers/auth";
 import type { GetServerSideProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const supabaseClient = useSupabaseClient();
   const { t } = useTranslation("index");
+  const user = useUser();
+  const router = useRouter();
+  useEffect(() => {
+    if (user) {
+      router.push("/learn/home");
+    }
+  }, []);
+
   return (
     <>
       <Head>

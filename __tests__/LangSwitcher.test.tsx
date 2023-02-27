@@ -13,8 +13,11 @@ describe("LangSwitcher", () => {
     i18n: { changeLanguage },
   });
 
+  const setLang = jest.fn();
+  const lang = "";
+
   beforeEach(() => {
-    render(<LangSwitcher />);
+    render(<LangSwitcher setLang={setLang} lang={lang} />);
   });
 
   it("should render LangSwitcher", () => {
@@ -24,11 +27,7 @@ describe("LangSwitcher", () => {
 
   it("should change language", () => {
     const langSwitcher = screen.getByRole("checkbox") as HTMLInputElement;
-    // read from cookie
-    expect(changeLanguage).toHaveBeenCalledWith("");
     fireEvent.click(langSwitcher);
-    expect(changeLanguage).toHaveBeenCalledWith("en");
-    fireEvent.click(langSwitcher);
-    expect(changeLanguage).toHaveBeenCalledWith("es");
+    expect(setLang).toHaveBeenCalled();
   });
 });
