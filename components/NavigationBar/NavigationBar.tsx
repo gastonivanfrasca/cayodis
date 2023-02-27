@@ -1,5 +1,6 @@
 import { ThemeSwitcher, LangSwitcher, Avatar } from "@/components";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { signOut, signInWithGoogle } from "@/helpers/auth";
 import { FcGoogle } from "react-icons/fc";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
@@ -15,6 +16,7 @@ const genos = Genos({
 
 const NavigationBar = () => {
   const user = useUser();
+  const router = useRouter();
   const [lang, setLang] = useStorageState("language", Langs.Empty);
   const supabaseClient = useSupabaseClient();
   const { t } = useTranslation("common");
@@ -91,7 +93,9 @@ const NavigationBar = () => {
               <li>
                 <button
                   onClick={() =>
-                    signOut(supabaseClient).then(() => window.location.reload())
+                    signOut(supabaseClient).then(() =>
+                      router.push("/", undefined, { locale: lang })
+                    )
                   }
                 >
                   🚫
@@ -99,7 +103,13 @@ const NavigationBar = () => {
               </li>
             ) : (
               <li>
-                <button onClick={() => signInWithGoogle(supabaseClient)}>
+                <button
+                  onClick={() =>
+                    signInWithGoogle(supabaseClient).then(() =>
+                      router.push("/learn/home", undefined, { locale: lang })
+                    )
+                  }
+                >
                   <FcGoogle />
                 </button>
               </li>
