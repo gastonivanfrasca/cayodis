@@ -11,14 +11,14 @@ import { useRouter } from "next/router";
 
 export default function Home() {
   const supabaseClient = useSupabaseClient();
-  const { t } = useTranslation("index");
+  const { t, i18n } = useTranslation("index");
   const user = useUser();
   const router = useRouter();
   useEffect(() => {
     if (user) {
-      router.push("/learn/home");
+      router.push("/learn/home", undefined, { locale: i18n.language });
     }
-  }, []);
+  }, [user]);
 
   return (
     <>
@@ -49,7 +49,11 @@ export default function Home() {
                 className="btn btn-md lg:btn-lg"
                 onClick={() =>
                   signInWithGoogle(supabaseClient)
-                    .then()
+                    .then(() =>
+                      router.push("/learn/home", undefined, {
+                        locale: i18n.language,
+                      })
+                    )
                     .catch(() => window.location.assign("/500"))
                 }
               >
