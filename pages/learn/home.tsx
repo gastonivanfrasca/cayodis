@@ -32,7 +32,7 @@ const Home = () => {
           </div>
           <div
             className="carousel-item relative w-full md:w-max cursor-pointer"
-            onClick={() => router.push("learn/tutorial/1")}
+            onClick={() => router.push("/learn/tutorial/1")}
           >
             <TutorialCard
               title="Declaring a component"
