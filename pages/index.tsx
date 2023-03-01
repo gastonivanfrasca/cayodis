@@ -16,9 +16,7 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     if (user) {
-      router.push("/learn/home", undefined, {
-        locale: i18n?.language ? i18n.language : "en",
-      });
+      router.push("/learn/home");
     }
   }, [user]);
 
@@ -51,11 +49,7 @@ export default function Home() {
                 className="btn btn-md lg:btn-lg"
                 onClick={() =>
                   signInWithGoogle(supabaseClient)
-                    .then(() =>
-                      router.push("/learn/home", undefined, {
-                        locale: i18n?.language ? i18n.language : "en",
-                      })
-                    )
+                    .then(() => router.push("/learn/home"))
                     .catch(() => window.location.assign("/500"))
                 }
               >
