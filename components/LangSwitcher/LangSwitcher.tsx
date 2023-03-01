@@ -20,7 +20,9 @@ const LangSwitcher = ({ lang, setLang }: LangSwitcherProps) => {
     }
 
     if (lang !== i18n.language || lang !== Langs.Empty) {
-      i18n.changeLanguage(lang);
+      if (i18n && i18n.changeLanguage) {
+        i18n.changeLanguage(lang);
+      }
     }
   }, [lang]);
   return (
