@@ -8,14 +8,12 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { log } from "next-axiom";
 
 export default function Home() {
   const supabaseClient = useSupabaseClient();
   const { t, i18n } = useTranslation("index");
   const user = useUser();
   const router = useRouter();
-  log.info("entering index page");
   useEffect(() => {
     if (user) {
       router.push("/learn/home", undefined, {
