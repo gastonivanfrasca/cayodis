@@ -18,7 +18,9 @@ export default function Home() {
   log.info("entering index page");
   useEffect(() => {
     if (user) {
-      router.push("/learn/home", undefined, { locale: i18n.language });
+      router.push("/learn/home", undefined, {
+        locale: i18n?.language ? i18n.language : "en",
+      });
     }
   }, [user]);
 
@@ -53,7 +55,7 @@ export default function Home() {
                   signInWithGoogle(supabaseClient)
                     .then(() =>
                       router.push("/learn/home", undefined, {
-                        locale: i18n.language,
+                        locale: i18n?.language ? i18n.language : "en",
                       })
                     )
                     .catch(() => window.location.assign("/500"))
