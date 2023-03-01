@@ -4,9 +4,11 @@ import type { GetServerSideProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import TutorialCard from "@/components/TutorialCard";
+import { useRouter } from "next/router";
 
 const Home = () => {
   const { t } = useTranslation(["common"]);
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -28,7 +30,10 @@ const Home = () => {
               code="<Component />"
             />
           </div>
-          <div className="carousel-item relative w-full md:w-max cursor-pointer">
+          <div
+            className="carousel-item relative w-full md:w-max cursor-pointer"
+            onClick={() => router.push("learn/tutorial/1")}
+          >
             <TutorialCard
               title="Declaring a component"
               description="Component declaration is the base of React"
