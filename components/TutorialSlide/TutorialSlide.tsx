@@ -38,7 +38,7 @@ const TutorialSlide = () => {
   `;
 
   return (
-    <div className="my-8">
+    <div className="my-8 md:max-w-2xl mx-auto">
       <ReactMarkdown
         children={markdown}
         components={{
@@ -78,7 +78,7 @@ const TutorialSlide = () => {
 
           pre: ({ node, ...props }) => (
             //@ts-ignore
-            <div className="mockup-code my-2" {...props} />
+            <div className="mockup-code my-4" {...props} />
           ),
           code: ({ node, inline, className, children, ...props }) => {
             const match = /language-(\w+)/.exec(className || "");

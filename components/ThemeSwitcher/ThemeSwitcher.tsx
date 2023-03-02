@@ -7,7 +7,7 @@ const ThemeSwitcher = () => {
   const [theme, setTheme] = useStorageState(THEME_STR_KEY, Themes.EMPTY);
 
   useEffect(() => {
-    if (theme === Themes.EMPTY) {
+    if (theme === Themes.EMPTY && !localStorage.getItem(THEME_STR_KEY)) {
       setTheme(
         window.matchMedia &&
           window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -16,7 +16,9 @@ const ThemeSwitcher = () => {
       );
     }
 
-    document.documentElement.setAttribute(THEME_ATTR, theme);
+    if (theme) {
+      document.documentElement.setAttribute(THEME_ATTR, theme);
+    }
   }, [theme]);
 
   return (

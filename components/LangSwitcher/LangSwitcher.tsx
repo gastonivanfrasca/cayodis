@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 export enum Langs {
   EN = "en",
@@ -13,17 +14,10 @@ type LangSwitcherProps = {
 };
 
 const LangSwitcher = ({ lang, setLang }: LangSwitcherProps) => {
-  const { i18n } = useTranslation("common");
+  const router = useRouter();
   useEffect(() => {
-    if (lang === Langs.Empty) {
-      setLang(Langs.EN);
-    }
-
-    if (lang !== i18n.language || lang !== Langs.Empty) {
-      if (i18n && i18n.changeLanguage) {
-        i18n.changeLanguage(lang);
-      }
-    }
+    const path = router.asPath;
+    router.push(path, path, { locale: lang });
   }, [lang]);
   return (
     <label className="label cursor-pointer">
