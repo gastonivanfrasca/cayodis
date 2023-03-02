@@ -17,7 +17,7 @@ const genos = Genos({
 const NavigationBar = () => {
   const user = useUser();
   const router = useRouter();
-  const [lang, setLang] = useStorageState("language", Langs.Empty);
+  const [lang, setLang] = useStorageState("language", router.locale as Langs);
   const supabaseClient = useSupabaseClient();
   const { t } = useTranslation("common");
 
@@ -47,20 +47,14 @@ const NavigationBar = () => {
           >
             {user && (
               <li>
-                <Link href={"/learn/home"} locale={lang}>
-                  {t("learn")}
-                </Link>
+                <Link href={"/learn/home"}>{t("learn")}</Link>
               </li>
             )}
             <li>
-              <Link href={"/credits"} locale={lang}>
-                {t("credits")}
-              </Link>
+              <Link href={"/credits"}>{t("credits")}</Link>
             </li>
             <li>
-              <Link href={"/about"} locale={lang}>
-                {t("about")}
-              </Link>
+              <Link href={"/about"}>{t("about")}</Link>
             </li>
             <li>
               <ThemeSwitcher />
@@ -93,9 +87,7 @@ const NavigationBar = () => {
               <li>
                 <button
                   onClick={() =>
-                    signOut(supabaseClient).then(() =>
-                      router.push("/", undefined, { locale: lang })
-                    )
+                    signOut(supabaseClient).then(() => router.push("/"))
                   }
                 >
                   🚫
@@ -106,7 +98,7 @@ const NavigationBar = () => {
                 <button
                   onClick={() =>
                     signInWithGoogle(supabaseClient).then(() =>
-                      router.push("/learn/home", undefined, { locale: lang })
+                      router.push("/learn/home")
                     )
                   }
                 >

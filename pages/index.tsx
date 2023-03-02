@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 export default function Home() {
   const supabaseClient = useSupabaseClient();
-  const { t, i18n } = useTranslation("index");
+  const { t } = useTranslation("index");
   const user = useUser();
   const router = useRouter();
   useEffect(() => {
