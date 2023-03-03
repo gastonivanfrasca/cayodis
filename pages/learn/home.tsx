@@ -22,7 +22,7 @@ const Home = () => {
         <div className="carousel  carousel-center max-w-md py-16 p-4 space-x-8 bg-base-200 rounded-box  md:max-w-full ">
           <div
             className="carousel-item relative w-full md:w-max cursor-pointer"
-            onClick={() => router.push("/learn/tutorial/1/slide/1")}
+            onClick={() => router.push("/learn/tutorial/1/slides")}
           >
             <TutorialCard
               title="Declaring a component"
@@ -35,7 +35,7 @@ const Home = () => {
           </div>
           <div
             className="carousel-item relative w-full md:w-max cursor-pointer"
-            onClick={() => router.push("/learn/tutorial/2/slide/1")}
+            onClick={() => router.push("/learn/tutorial/2/slides")}
           >
             <TutorialCard
               title="Declaring a component"
