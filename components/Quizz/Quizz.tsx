@@ -1,3 +1,5 @@
+import { randomInt } from "crypto";
+
 type Props = {
   currentQuizz: {
     question: string;
@@ -13,7 +15,7 @@ const Quizz = ({ currentQuizz, setSelectedAnswer }: Props) => {
       <div className="justify-center px-4 py-4 border-t border-base-200">
         <p className="text-lg font-semibold mb-4">{question}</p>
         {answers.map((answer, index) => (
-          <div className="form-control">
+          <div className="form-control" key={randomInt()}>
             <label className="label cursor-pointer">
               <div className="flex justify-around">
                 <span className="label-text">{answer}</span>

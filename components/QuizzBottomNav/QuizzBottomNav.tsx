@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useRouter } from "next/router";
 import { AiFillCheckCircle } from "react-icons/ai";
+import Image from "next/image";
 
 type Props = {
   selectedAnswer: number;
@@ -56,7 +56,10 @@ const ChatBubble = () => {
     <div className="chat chat-start">
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
-          <img src="/favicon/android-chrome-192x192.png" />
+          <Image
+            src="/favicon/android-chrome-192x192.png"
+            alt="chatbot image"
+          />
         </div>
       </div>
       <div className="chat-bubble">Great the answer is correct!</div>
