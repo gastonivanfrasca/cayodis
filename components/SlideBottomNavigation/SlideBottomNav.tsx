@@ -1,23 +1,19 @@
 import React from "react";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { VscDebugRestart } from "react-icons/vsc";
+import { RiCheckboxMultipleFill } from "react-icons/ri";
+import { useRouter } from "next/router";
 
 type Props = {
   currentSlide: number;
   setCurrentSlide: (slide: number) => void;
   totalSlides: number;
-};
-
-const isFirstSlide = (currentSlide: number) => {
-  return currentSlide === 0;
-};
-
-const isLastSlide = (currentSlide: number, totalSlides: number) => {
-  return currentSlide === totalSlides - 1;
+  tutorialID: string;
 };
 
 const SlideBottomNav = (props: Props) => {
-  const { currentSlide, setCurrentSlide, totalSlides } = props;
+  const { currentSlide, setCurrentSlide, totalSlides, tutorialID } = props;
+  const router = useRouter();
   return (
     <>
       <div className="btm-nav bg-base-200">
@@ -52,12 +48,9 @@ const SlideBottomNav = (props: Props) => {
         )}
         {isLastSlide(currentSlide, totalSlides) ? (
           <button
-            className="disabled"
-            tabIndex={-1}
-            role="button"
-            aria-disabled="true"
+            onClick={() => router.push(`learn/tutorial/${tutorialID}/quizzes`)}
           >
-            <AiOutlineArrowRight />
+            <RiCheckboxMultipleFill />
           </button>
         ) : (
           <button onClick={() => setCurrentSlide(currentSlide + 1)}>
@@ -67,6 +60,14 @@ const SlideBottomNav = (props: Props) => {
       </div>
     </>
   );
+};
+
+const isFirstSlide = (currentSlide: number) => {
+  return currentSlide === 0;
+};
+
+const isLastSlide = (currentSlide: number, totalSlides: number) => {
+  return currentSlide === totalSlides - 1;
 };
 
 export default SlideBottomNav;

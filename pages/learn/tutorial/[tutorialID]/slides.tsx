@@ -13,7 +13,7 @@ type Props = {
       description: string;
       difficulty: string;
       points: number;
-      icon: string;
+      tutorialID: string;
     };
     totalSlides: number;
   };
@@ -21,12 +21,14 @@ type Props = {
 
 const Tutorial = ({ tutorial }: Props) => {
   const { slides, metadata, totalSlides } = tutorial;
+  const { title, description, difficulty, points, tutorialID } = metadata;
   const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <>
       <TutorialSlide currentSlide={currentSlide} slides={slides} />
       <SlideBottomNav
+        tutorialID={tutorialID}
         currentSlide={currentSlide}
         setCurrentSlide={setCurrentSlide}
         totalSlides={totalSlides}
@@ -157,7 +159,16 @@ export default App;
 `;
 
   const slides = separateSlides(markdown);
-  const metadata = separateMetadata(markdown);
+  const metadata = {
+    id: "d286c33c-aeac-4d7b-994a-36ebbb452647",
+    title: "useEffect Basics",
+    description:
+      "useEffect is a React hook that allows you to perform side effects in function components.",
+    duration: 10,
+    difficulty: "Beginner",
+    tags: ["React", "Hooks", "useEffect"],
+    points: 10,
+  };
   const totalSlides = slides.length;
   const tutorial = {
     totalSlides,
