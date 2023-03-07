@@ -1,18 +1,21 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import LangSwitcher from "@/components/LangSwitcher/LangSwitcher";
-import { useTranslation } from "next-i18next";
 
 jest.mock("next-i18next", () => ({
   useTranslation: jest.fn(),
 }));
 
-describe("LangSwitcher", () => {
-  const changeLanguage = jest.fn();
-  (useTranslation as jest.Mock).mockReturnValue({
-    i18n: { changeLanguage },
-  });
+const push = jest.fn();
+jest.mock("next/router", () => ({
+  useRouter: jest.fn().mockImplementation(() => ({
+    push: push,
+    pathname: "/",
+    query: {},
+  })),
+}));
 
+describe("LangSwitcher", () => {
   const setLang = jest.fn();
   const lang = "";
 
