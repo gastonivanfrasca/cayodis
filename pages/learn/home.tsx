@@ -35,7 +35,7 @@ const Home = ({ tutorials, locale }: Props) => {
               onClick={() =>
                 router.push(`/learn/tutorial/${tutorial.tutorial_id}/slides`)
               }
-              id={tutorial.tutorial_id}
+              key={tutorial.tutorial_id}
             >
               <TutorialCard
                 // @ts-ignore
