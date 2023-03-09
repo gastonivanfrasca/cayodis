@@ -1,9 +1,9 @@
 import getIconFromStr from "../Icon/Icon";
 
 type TutorialCardProps = {
-  title: string;
-  description: string;
-  difficulty: string;
+  title: any;
+  description: any;
+  difficulty: number;
   points: number;
   icon: string;
   code: string;
@@ -15,7 +15,7 @@ const TutorialCard = ({
   difficulty,
   points,
   icon,
-  code
+  code,
 }: TutorialCardProps) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl hover:bg-base-300">
