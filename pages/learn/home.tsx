@@ -44,8 +44,8 @@ const Home = ({ tutorials, locale }: Props) => {
                 description={tutorial.description[locale]}
                 difficulty={tutorial.difficulty}
                 points={tutorial.points}
-                icon="react"
-                code="<Component />"
+                icon={tutorial.icon}
+                code={tutorial.code}
               />
             </div>
           ))}
@@ -74,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
 const getTutorialsFromSupabaseTable = async () => {
   let { data: tutorials, error } = await supabase.from("tutorials").select("*");
   if (error) {
-    console.log(error);
+    console.error(error);
   }
   return tutorials;
 };

@@ -9,6 +9,8 @@ export interface Tutorial {
   difficulty: number;
   points: number;
   tags: string[];
+  icon: string;
+  code: string;
 }
 
 export interface Content {

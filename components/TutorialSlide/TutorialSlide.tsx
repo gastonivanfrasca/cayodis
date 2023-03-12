@@ -2,45 +2,17 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-const TutorialSlide = () => {
-  const markdown = `
-  ## What is useEffect?
+type Props = {
+  currentSlide: number;
+  slides: string[];
+};
 
-  useEffect is a React hook that allows you to perform side effects in function components.
-   It is a close cousin of the componentDidMount, 
-   componentDidUpdate, and componentWillUnmount lifecycle methods in class components.
-
-  ## Why is useEffect useful?
-
-  useEffect allows you to perform side effects in function components. 
-  This means that you can perform data fetching, subscriptions, 
-  or manually changing the DOM from React components.
-
-  ## How do I use useEffect?
-
-  useEffect takes a function as its first argument. 
-  This function is called after the component is rendered for the first time. 
-  The function can optionally return a cleanup function, 
-  which is called before the component is removed from the DOM.
-
-  ~~~js
-  useEffect(() => {
-    /* This function is called 
-    after the component is rendered 
-    for the first time */
-    return () => {
-      /* This function is called 
-      before the component is removed 
-      from the DOM */
-    };
-  });
-  ~~~
-  `;
-
+const TutorialSlide = (props: Props) => {
+  const { currentSlide, slides } = props;
   return (
-    <div className="my-8 md:max-w-2xl mx-auto">
+    <div className="my-8 md:max-w-2xl mx-auto pb-8">
       <ReactMarkdown
-        children={markdown}
+        children={slides[currentSlide]}
         components={{
           h1: ({ node, ...props }) => (
             <h1 className="py-2 text-4xl font-bold" {...props} />
@@ -85,7 +57,7 @@ const TutorialSlide = () => {
             return !inline && match ? (
               <SyntaxHighlighter
                 children={String(children).replace(/\n$/, "")}
-                //@ts-ignore
+                // @ts-ignore
                 style={darcula}
                 language={match[1]}
                 PreTag="pre"

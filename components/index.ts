@@ -4,6 +4,9 @@ import Avatar from "./Avatar";
 import LangSwitcher from "./LangSwitcher";
 import LottieAnimation from "./LottieAnimation";
 import ThemeSwitcher from "./ThemeSwitcher";
+import TutorialSlide from "./TutorialSlide";
+import TutorialCard from "./TutorialCard";
+import SlideBottomNav from "./SlideBottomNavigation";
 
 export {
   Layout,
@@ -12,4 +15,7 @@ export {
   LangSwitcher,
   LottieAnimation,
   ThemeSwitcher,
+  TutorialSlide,
+  TutorialCard,
+  SlideBottomNav,
 };
