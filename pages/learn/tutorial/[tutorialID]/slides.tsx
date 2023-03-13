@@ -5,6 +5,7 @@ import { separateSlides } from "@/helpers/slides";
 import { useState } from "react";
 import { initializeSupabaseClient } from "@/helpers/provider";
 import type { Tutorial } from "@/entities/Tutorial";
+import { getTutorialFromSupabaseTable } from "@/helpers/provider";
 
 const supabase = initializeSupabaseClient();
 
@@ -39,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const lang = locale || "en";
   const tutorialID = params?.tutorialID as string;
-  const tutorial = await getTutorialFromSupabaseTable(tutorialID);
+  const tutorial = await getTutorialFromSupabaseTable(supabase, tutorialID);
   // @ts-ignore
   const slideMarkdown = tutorial.slides[lang];
   const slides = separateSlides(slideMarkdown);
@@ -56,15 +57,4 @@ export const getServerSideProps: GetServerSideProps = async ({
       tutorial,
     },
   };
-};
-
-const getTutorialFromSupabaseTable = async (tutorialID: string) => {
-  const { data, error } = await supabase
-    .from("tutorials")
-    .select("*")
-    .eq("tutorial_id", tutorialID);
-  if (error || !data) {
-    console.error(error);
-  }
-  return data![0] as unknown as Tutorial;
 };

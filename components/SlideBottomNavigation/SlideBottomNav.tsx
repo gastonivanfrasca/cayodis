@@ -48,7 +48,7 @@ const SlideBottomNav = (props: Props) => {
         )}
         {isLastSlide(currentSlide, totalSlides) ? (
           <button
-            onClick={() => router.push(`learn/tutorial/${tutorialID}/quizzes`)}
+            onClick={() => router.push(`/learn/tutorial/${tutorialID}/quizzes`)}
           >
             <RiCheckboxMultipleFill />
           </button>
