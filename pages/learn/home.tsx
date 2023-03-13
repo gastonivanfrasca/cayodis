@@ -7,6 +7,7 @@ import TutorialCard from "@/components/TutorialCard";
 import { useRouter } from "next/router";
 import type { Tutorial } from "@/entities/Tutorial";
 import { initializeSupabaseClient } from "@/helpers/provider";
+import { getTutorialsFromSupabaseTable } from "@/helpers/provider";
 
 const supabase = initializeSupabaseClient();
 
@@ -58,7 +59,7 @@ const Home = ({ tutorials, locale }: Props) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  const tutorials = await getTutorialsFromSupabaseTable();
+  const tutorials = await getTutorialsFromSupabaseTable(supabase);
   return {
     props: {
       ...(await serverSideTranslations(locale!, ["home", "common"], null, [
@@ -69,12 +70,4 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
       locale: locale || "en",
     },
   };
-};
-
-const getTutorialsFromSupabaseTable = async () => {
-  let { data: tutorials, error } = await supabase.from("tutorials").select("*");
-  if (error) {
-    console.error(error);
-  }
-  return tutorials;
 };
